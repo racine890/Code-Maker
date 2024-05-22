@@ -1,0 +1,19 @@
+# Save it locally ...
+# In the same folder
+SetVar *platform PLATFORM
+compare *platform win32
+# On windows
+if 0 then
+	evaluate system('copy /Y "data.db" "code_maker_backup.db"')
+	# On the desktop
+	evaluate system('copy /Y "data.db" "C:\\Users\\%USERNAME%\\Desktop\\code_maker_backup.db"')
+# On linux
+if 5 then
+	evaluate system('cp "data.db" "code_maker_backup.db"')
+	# On the desktop
+	evaluate system('cp "data.db" "~/code_maker_backup.db"')
+evaluate getDateStr(addMonths({*d_today}, 3)) =>*d_next
+evaluate ch_update('next_backup: '+{*d_next}, 'config.ch')
+# Then push it online for a 30 days validity
+execute app/scripts/pushDb.gcs 1
+end

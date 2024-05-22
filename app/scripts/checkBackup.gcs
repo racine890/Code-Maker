@@ -1,0 +1,20 @@
+evaluate getToday()=>*d_today
+# Option de sauvegarde par argument
+if evaluate('/s' in {MAIN_ARGS}) then
+	MessageBox Alerte Sauvegarde périodique en cours. Attendez que la sauvegarde soit terminée.
+	execute app/scripts/bak.gcs 1
+	end
+# Option de sauvegarde chaque 3 mois
+evaluate chd('next_backup', 'config.ch') =>*d_next
+if evaluate({*d_next} == "") then
+	print val --- Creating next backup date ...
+	evaluate getDateStr(addMonths({*d_today}, 3)) =>*d_next
+	evaluate ch_update('next_backup: '+{*d_next}, 'config.ch')
+	end
+evaluate {*d_next}.split('/')
+evaluate (int({LASTRESULT}[0]),int({LASTRESULT}[1]),int({LASTRESULT}[2]))=>*d_next
+if evaluate( not isTimeLeft({*d_today}, {*d_next}) ) then
+	MessageBox Alerte Sauvegarde périodique en cours. Attendez que la sauvegarde soit terminée.
+	execute app/scripts/bak.gcs 1
+	end
+end

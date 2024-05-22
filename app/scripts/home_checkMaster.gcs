@@ -1,0 +1,51 @@
+#checkUser.gcs
+connect database data.db
+GetInput 1
+
+# On va hasher le mot de passe avant de le rechercher dans la base de données.
+SetVar *password LASTRESULT
+execute function encode with self.vars.getvar('*password'), "rot13"
+SetVar *password LASTRESULT
+
+# Sécurité : Empecher l'injection SQL
+SetVar *banned evaluate(['or','--','delete','drop','select','update','set'])
+evaluate {*password}.split()
+SetVar *checker LASTRESULT
+ForEach *el in *banned block
+
+#On fait une requête
+query select_all with query
+#On compte le nombre d'utilisateurs correspondant. Si il n'yen a aucun, c'est que les identifiants sont incorrects!
+count LASTLIST
+compare LASTRESULT 0
+if 0 then
+	execute query query2
+	commit
+	SetVar LASTLIST evaluate( [[self.vars.getvar('*password')]] )
+
+GetTableElement 0 of LASTLIST
+GetTableElement 1 of LASTRESULT
+compare LASTRESULT *password
+if 5 then
+	MessageBox Error The password is wrong, try again!
+	end
+
+#Puis on change d'écran.
+load app/screens/main.ch
+close database
+end
+
+[query]
+select * from Config;
+[/query]
+
+[query2]
+insert into Config (pwd) values ( *password );
+[/query2]
+
+[@block]
+if evaluate({*el}.lower() in {*checker}) then
+	MessageBox Error Critical Error : Please, get lost. Those are not allowed there!
+	exit
+	end
+[/@block]
