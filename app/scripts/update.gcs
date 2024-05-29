@@ -1,24 +1,19 @@
 #Récuperer chaque champ et mettre les valeurs dans des variables
 GetInput 3
-execute function encode with self.vars.getvar('LASTRESULT'), 'rot13'
-SetVar *oldPass LASTRESULT
+evaluate crypt_pass({LASTRESULT}, {*master_salt}) =>*oldPass
+
 compare *oldPass *password
 if 5 then
 	MessageBox Error Master password is incorrect !
 	end
 GetInput 4
-execute function encode with self.vars.getvar('LASTRESULT'), 'rot13'
-SetVar *newPass LASTRESULT
+evaluate crypt_pass({LASTRESULT}, {*master_salt}) =>*newPass
 
 #Executer la requete d'insertion
 connect database data.db
 execute query query_two
+evaluate self.connect.cursor.execute("update Config set pwd = ? ;", [{*newPass}])
 #Enregistrer la transaction sur la bd
 commit
 MessageBox Done! Password saved!
 end
-
-#Faire une insertion
-[query_two]
-update Config set pwd = *newPass ;
-[/query_two]

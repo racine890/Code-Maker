@@ -1,0 +1,17 @@
+connect database data.db
+query select_all with query
+SetVar *codes LASTLIST
+close database
+SetVar *codes_liste *codes
+evaluate getTableColumn({*codes_liste}, 1)
+create ListBox with LASTRESULT
+ConfigButton 1 bg="#42B3AF", fg="white"
+ConfigButton 7 bg="#E05200", fg="white"
+end
+
+[query]
+select * from Code;
+[/query]
+
+LB.x: 200
+LB.y: 80

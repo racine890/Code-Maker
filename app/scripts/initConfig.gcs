@@ -1,0 +1,44 @@
+print val ----------- Initiating RSA DB security ----------------
+connect database data.db
+query select_one with q
+
+compare LASTTUPLE None
+if 0 then
+	evaluate make_keys() =>*rsaks
+	
+	GetTableElement 0 of *rsaks
+	SetVar *rsapk LASTRESULT
+	evaluate strkey({LASTRESULT})=>*master_priv_key
+
+	GetTableElement 1 of *rsaks
+	SetVar *rsapbk LASTRESULT
+	evaluate strkey({LASTRESULT})=>*master_pub_key
+
+	evaluate make_salt() =>*master_salt
+	evaluate crypt_pass("1234", {*master_salt}) => *master_pass
+	
+	evaluate self.connect.cursor.execute("insert into Config(pwd, rsa_private, rsa_public, salt) values ( ? , ? , ? , ? );", ({*master_pass}, {*master_priv_key}, {*master_pub_key} , {*master_salt}))
+	
+	commit
+	close database
+	end
+
+GetTableElement 1 of LASTTUPLE
+SetVar *master_pass LASTRESULT
+GetTableElement 3 of LASTTUPLE
+SetVar *master_pub_key LASTRESULT
+GetTableElement 4 of LASTTUPLE
+SetVar *master_priv_key LASTRESULT
+GetTableElement 2 of LASTTUPLE
+SetVar *master_salt LASTRESULT
+close database
+
+end
+
+[q]
+select * from Config;
+[/q]
+
+[ins]
+insert into Config(pwd, rsa_private, rsa_public) values ( *passw , *rsapriv , *rsapub );
+[/ins]

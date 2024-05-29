@@ -1,0 +1,18 @@
+: TODO
+- Optimize
+- Deploy
+- Use password algorithms ( as from sentence or word, random, name , etc )
+- Add tree questions to recover master password
+- Save to cloud ( Ok, need to push it online )
+- Add pro feature
+- Max retries
+- Encrypt passwords and labels in db ( ok, but need better encryption )
+- Match Linux
+- Create multi-user system for centered passwords management
+- Search
+
+: DONE
+- Crypt database content (ok)
+- Add Licence (ok)
+- Make GCA (ok)
+- Add master Password (ok)

@@ -32,4 +32,5 @@ Edit.size: 150
 
 [events]
 Button-1: app/scripts/licence_accept.gcs
+Key: @[end]
 [/events]

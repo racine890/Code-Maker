@@ -1,0 +1,26 @@
+count SELECTED
+compare LASTRESULT 0
+if 0 then
+	end
+try @show else @pass
+end
+
+[@show]
+#GetTableElement 1 of SELECTED
+connect database data.db
+execute query q
+MessageBox OK! Suppression Terminée!
+commit
+close database
+reset
+end
+[/@show]
+
+[@pass]
+end
+[/@pass]
+
+[q]
+delete from Code where c_libelle like *libelle ;
+[/q]
+

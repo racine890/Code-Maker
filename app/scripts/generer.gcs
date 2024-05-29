@@ -13,10 +13,12 @@ if evaluate( chd( "digits" , "Config.ch" )=='yes' ) then
 	add *lim 10
 	SetVar *lim LASTRESULT
 if evaluate( chd( "other" , "Config.ch" )=='yes' ) then
-	add *deck ,;:!*.?%@[]{#€
+	add *deck ,;:!*.?%@[]{€#
 	SetVar *deck LASTRESULT
 	add *lim 14
 	SetVar *lim LASTRESULT
+substract *lim 1
+SetVar *lim LASTRESULT
 evaluate int(chd( "minimal_cars" , "Config.ch" ))
 SetVar *t LASTRESULT
 
@@ -25,7 +27,7 @@ repeat *t times
 random 0 *lim
 SetVar *ind LASTRESULT
 GetTableElement *ind of *deck
-evaluate self.vars.setvar( '*result' , self.vars.getvar( '*result' )+self.vars.getvar( 'LASTRESULT' ))
+evaluate self.vars.setvar( '*result' , str(self.vars.getvar( '*result' ))+str(self.vars.getvar( 'LASTRESULT' )))
 #Just a bug... Apparently the line before stop repeat is not runned
 stop repeat
 

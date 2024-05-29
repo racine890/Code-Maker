@@ -1,0 +1,26 @@
+OpenFile 0
+SetVar *ndb LASTRESULT
+if evaluate({*ndb}=='') then
+	end
+MessageBox Alert Starting merge ...
+connect database *ndb
+query select_all with query
+SetVar *lines LASTLIST
+print val Obtained Lines :
+print var *lines
+close database
+connect database data.db
+ForEach *line of *lines add
+commit
+close database
+MessageBox done Merge complete!
+end
+
+[@add]
+evaluate tuple({*line}[1:])
+evaluate self.connect.cursor.execute('insert into Code(c_libelle, c_passw) values '+str({LASTRESULT})+';')
+[/@add]
+
+[query]
+select * from Code;
+[/query]

@@ -7,18 +7,21 @@ main_text_size: 10
 entry.size: 20
 
 #3 champs de texte
-Text.nb: 3
+Text.nb: 4
 Text1: Code Maker
 Text1.id: 0
 Text2: Label
 Text2.id: 1
 Text3: Password
 Text3.id: 2
+Text4: Username
+Text4.id: 17
 
 #2 inputs
-Input.nb: 2
+Input.nb: 3
 Input1.id: 3
 Input2.id: 4
+Input3.id: 18
 
 #4 boutons
 buttons.nb: 6
@@ -42,22 +45,28 @@ button6.id: 16
 
 #On "resize" les boutons quand meme...
 button.size: 20
-button.width: 100
+button.width: 130
 
 #Positions de chaque élément dans la fenetre. (se référer aux id)
 0.x: 50
 0.y: 0
 
 1.x: 220
-1.y: 20
+1.y: 0
 
 2.x: 240
 2.y: 70
 
-3.x: 220
-3.y: 60
+3.x: 200
+3.y: 40
 
-4.x: 220
+17.x: 240
+17.y: 35
+
+18.x: 200
+18.y: 75
+
+4.x: 200
 4.y: 110
 
 5.x: 230
@@ -93,6 +102,11 @@ LB.y: 150
 ConfigButton 15 bg="#42B3AF", fg="white"
 ConfigButton 5 bg="#E05200", fg="white"
 [/@init]
+
+[events]
+Button.1: @[end]
+Key: @[end]
+[/events]
 
 [@commitSave]
 try @[commit;close_database;end] else @[nope]

@@ -1,19 +1,40 @@
+MessageBox Error This option doesn't work anymore because of difference of private keys.
+MessageBox Alert Anyway, we shall find a quick alternative very soon !!
+end
+
 OpenFile 0
 SetVar *ndb LASTRESULT
 if evaluate({*ndb}=='') then
 	end
-MessageBox Alert Starting merge ...
+
+SetVar LASTFILE app/scripts/mergeDbs.gcs
+
 connect database *ndb
+query select_one with qtest
+close database
+
+compare LASTTUPLE None
+if 0 then
+	MessageBox Error This database seems to be from an older version that doesn't handle rsa. Please copy manually your passwords.
+	end
+
+MessageBox Alert Starting merge ...
+
+connect database *ndb
+
 query select_all with query
 SetVar *lines LASTLIST
-print val Obtained Lines :
-print var *lines
+
 close database
+
 connect database data.db
 ForEach *line of *lines add
 commit
+
 close database
+
 MessageBox done Merge complete!
+
 end
 
 [@add]
@@ -24,3 +45,7 @@ evaluate self.connect.cursor.execute('insert into Code(c_libelle, c_passw) value
 [query]
 select * from Code;
 [/query]
+
+[qtest]
+select * from Config;
+[/qtest]

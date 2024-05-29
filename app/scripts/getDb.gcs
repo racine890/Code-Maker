@@ -1,26 +1,10 @@
-close database
-evaluate system('del data_old.db')
-print val -------------- Deleted old
-evaluate rename("data.db", "data_old.db")
-print val -------------- Renamed it
-check file pushed.ch
-if 0 then
-	MessageBox Error No log file found. Please save the database first!
-	end
-# Getting command
-GetLine 5 of pushed.ch
-SetVar *command LASTRESULT
-
 SetVar *platform PLATFORM
 compare *platform win32
+# On windows
 if 0 then
-	print val -------------- Windows command
-	evaluate system('"C:\\GC\\installed\\'+{*command}+'"')
-	MessageBox done Database saved!
-	end
-
-print val ----------- Linux command
-# Check if he has wget first
-evaluate system('"'+{*command}+'"')
-MessageBox done Database saved!
+	evaluate system('copy /Y "code_maker_backup.db" "data.db"')
+# On linux
+if 5 then
+	evaluate system('cp "code_maker_backup.db" "data.db"')
+MessageBox Done Recovered the last saved version !
 end

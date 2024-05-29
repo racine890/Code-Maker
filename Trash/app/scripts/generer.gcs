@@ -1,0 +1,34 @@
+#Initiate
+evaluate ""
+SetVar *result LASTRESULT
+SetVar *deck
+SetVar *lim 0
+if evaluate( chd( "letters" , "Config.ch" )=='yes' ) then
+	add *deck azertyuiopmlkjhgfdsqwxcvbnNBVCXWQSDFGHJKLMOIUYTREZAP
+	SetVar *deck LASTRESULT
+	SetVar *lim 52
+if evaluate( chd( "digits" , "Config.ch" )=='yes' ) then
+	add *deck 1234567890
+	SetVar *deck LASTRESULT
+	add *lim 10
+	SetVar *lim LASTRESULT
+if evaluate( chd( "other" , "Config.ch" )=='yes' ) then
+	add *deck ,;:!*.?%@[]{#€
+	SetVar *deck LASTRESULT
+	add *lim 14
+	SetVar *lim LASTRESULT
+evaluate int(chd( "minimal_cars" , "Config.ch" ))
+SetVar *t LASTRESULT
+
+#Get randomly *t characters
+repeat *t times
+random 0 *lim
+SetVar *ind LASTRESULT
+GetTableElement *ind of *deck
+evaluate self.vars.setvar( '*result' , self.vars.getvar( '*result' )+self.vars.getvar( 'LASTRESULT' ))
+#Just a bug... Apparently the line before stop repeat is not runned
+stop repeat
+
+#Update the input field
+SetInputText 4 *result
+end

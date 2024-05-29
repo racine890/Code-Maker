@@ -1,11 +1,13 @@
 check file code_maker_backup.db
+if 0 then
+	MessageBox Error Could not upload database.
+	end
 if 1 then
 	MessageBox Database saved with success!
-	compare *platform win32
+
+compare *platform win32
 if 0 then
-		MessageBox It has been placed on your Desktop. Please copy it to your secured cloud.
-		end
-	MessageBox It has been placed on your Home directory. Please copy it to your secured cloud.
+	MessageBox It has been placed on your Desktop. Please copy it to your secured cloud.
 	end
-MessageBox Error Could not upload database.
+MessageBox It has been placed on your Home directory. Please copy it to your secured cloud.
 end

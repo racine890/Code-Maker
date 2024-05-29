@@ -22,6 +22,6 @@ end
 [/@pass]
 
 [q]
-select c_passw from Code where c_libelle like *libelle ;
+select c_passw from Code where c_libelle = *libelle ;
 [/q]
 

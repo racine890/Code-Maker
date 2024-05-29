@@ -1,0 +1,7 @@
+system('push.bat')
+ReadFile pushed.ch
+if evaluate('Uploaded' in {LASTRESULT}) then
+	MessageBox Database saved with success!
+	end
+MessageBox Error Could not upload database.
+end

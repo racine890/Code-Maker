@@ -4,7 +4,10 @@ compare LASTRESULT 0
 if 0 then
 	MessageBox erreur Aucun mot de passe selectionne!
 	end
-execute function decode with self.vars.getvar('*pass'), 'rot13'
+
+evaluate binPrvKey({*master_priv_key}) =>*mpvb
+evaluate decrypt({*pass}, {*mpvb})
+
 SetVar *pass LASTRESULT
 evaluate self.clipboard_clear()
 evaluate self.clipboard_append( {*pass} )

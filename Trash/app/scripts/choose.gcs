@@ -1,0 +1,27 @@
+count SELECTED
+compare LASTRESULT 0
+if 0 then
+	end
+try @show else @pass
+end
+
+[@show]
+#GetTableElement 1 of SELECTED
+CreateText 4 SELECTED
+SetVar *libelle SELECTED
+connect database data.db
+query select_one with q
+GetTableElement 0 of LASTTUPLE
+SetVar *pass LASTRESULT
+end
+[/@show]
+
+[@pass]
+print val ** ERROR OCCURED **
+end
+[/@pass]
+
+[q]
+select c_passw from Code where c_libelle like *libelle ;
+[/q]
+

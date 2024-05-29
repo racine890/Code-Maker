@@ -8,10 +8,12 @@ end
 [@show]
 #GetTableElement 1 of SELECTED
 connect database data.db
-execute query q
-MessageBox OK! Suppression Terminée!
+
+evaluate self.connect.cursor.execute("delete from Code where c_libelle = ? ;", [{*libelle}] )
+
 commit
 close database
+MessageBox OK! Suppression Terminée!
 reset
 end
 [/@show]
@@ -21,6 +23,5 @@ end
 [/@pass]
 
 [q]
-delete from Code where c_libelle like *libelle ;
+delete from Code where c_libelle = *libelle ;
 [/q]
-

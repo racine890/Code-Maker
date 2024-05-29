@@ -16,12 +16,12 @@ Text.nb: 1
 entry.size: 20
 entry.width: 200
 
-button.width: 100
+button.width: 130
 button.size: 20
 main_text_size: 18
 
 Input1.id: 1
-1.x: 150
+1.x: 130
 1.y: 130
 
 Text1: Please, type your master password!
@@ -45,8 +45,7 @@ BackGround.y: 170
 [events]
 Control.b: app/scripts/pushDb.gcs
 Control.r: app/scripts/getDb.gcs
+Control.t: app/screens/main.ch
 [/events]
-
-debug: yes
 
 #END

@@ -19,6 +19,7 @@ Input2.id: 4
 
 #4 boutons
 buttons.nb: 7
+
 button1: Change
 button1.id: 5
 button2: My Passwords
@@ -41,7 +42,7 @@ button7.id: 19
 
 #On "resize" les boutons quand meme...
 button.size: 20
-button.width: 100
+button.width: 130
 
 #Positions de chaque élément dans la fenetre. (se référer aux id)
 0.x: 50
@@ -53,10 +54,10 @@ button.width: 100
 2.x: 260
 2.y: 70
 
-3.x: 220
+3.x: 200
 3.y: 60
 
-4.x: 220
+4.x: 200
 4.y: 110
 
 5.x: 230
@@ -125,7 +126,8 @@ Text2.id: 4
 4.y: 100
 
 [events]
-Button.1: app/scripts/choose.gcs
+Button.1: @[end]
+Key: @[end]
 [/events]
 
 [@init]

@@ -7,6 +7,7 @@ evaluate getTableColumn({*codes_liste}, 1)
 create ListBox with LASTRESULT
 ConfigButton 1 bg="#42B3AF", fg="white"
 ConfigButton 7 bg="#E05200", fg="white"
+ConfigInput 0 bg="#E05200", fg="white"
 end
 
 [query]

@@ -1,0 +1,18 @@
+# license_next.gcs
+# Le bouton suivant, juste afficher l'écran principal
+# Ecrire le texte "Terms and Conditions have been accepted dans le fichier accepted.txt
+write Terms and Conditions have been accepted. =>accepted.txt
+evaluate getcwd()
+# Créer la tache pour la sauvegarde automatique
+evaluate system('schtasks /create /tn "CodeMakerBackup" /tr "'+{LASTRESULT}+'\\cron_backup.bat" /sc MONTHLY /mo 3')
+load home.ch
+end
+
+#Création de la table
+[query_one]
+create table Code(
+	c_id integer primary key AUTOINCREMENT,
+	c_libelle varchar(20),
+	c_passw varchar(30)
+);
+[/query_one]

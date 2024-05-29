@@ -1,0 +1,20 @@
+#Récuperer chaque champ et mettre les valeurs dans des variables
+GetInput 3
+SetVar *libelle LASTRESULT
+GetInput 4
+execute function encode with self.vars.getvar('LASTRESULT'), 'rot13'
+SetVar *passw LASTRESULT
+
+#Executer la requete d'insertion
+connect database data.db
+# execute query query_two
+evaluate self.connect.cursor.execute("insert into Code( c_libelle, c_passw) values ( ?, ? );", ({*libelle}, {*passw}))
+#Enregistrer la transaction sur la bd
+commit
+MessageBox Done! Password saved!
+end
+
+#Faire une insertion
+[query_two]
+insert into Code( c_libelle, c_passw) values ( *libelle, *passw );
+[/query_two]

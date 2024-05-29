@@ -62,6 +62,9 @@ Input1.id: 0
 0.x: 195
 0.y: 55
 
+button.width: 130
+button.size: 20
+
 [events]
 Button.1: app/scripts/choose.gcs
 Key: app/scripts/search.gcs
