@@ -5,7 +5,7 @@ if 5 then
 GetInput 0
 SetVar *search_term LASTRESULT
 # Recherche par rapport au nom, au prénom au mail et au service.
-evaluate lambda l, st : [employe for employe in l if st.lower() in employe[1].lower() or st.lower() in employe[2].lower()]=>*filter_search
+evaluate lambda l, st : [code for code in l if st.lower() in code[1].lower()]=>*filter_search
 evaluate {*filter_search}({*codes}, {*search_term})=>*codes_liste
 evaluate self.page.boxes[0][1].delete(0,"end")
 ForEach *code in *codes_liste insert
