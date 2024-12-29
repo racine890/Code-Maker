@@ -49,19 +49,19 @@ button.width: 130
 
 #Positions de chaque élément dans la fenetre. (se référer aux id)
 0.x: 50
-0.y: 0
+0.y: 14
 
 1.x: 220
-1.y: 0
+1.y: 20
 
 2.x: 240
-2.y: 70
+2.y: 100
 
 3.x: 200
 3.y: 40
 
 17.x: 240
-17.y: 35
+17.y: 65
 
 18.x: 200
 18.y: 75

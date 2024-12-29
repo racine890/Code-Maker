@@ -46,13 +46,13 @@ button.width: 130
 
 #Positions de chaque élément dans la fenetre. (se référer aux id)
 0.x: 50
-0.y: 0
+0.y: 14
 
 1.x: 270
-1.y: 20
+1.y: 40
 
 2.x: 260
-2.y: 70
+2.y: 90
 
 3.x: 200
 3.y: 60
@@ -136,3 +136,4 @@ ConfigButton 5 bg="#E05200", fg="white"
 [/@init]
 
 #END
+

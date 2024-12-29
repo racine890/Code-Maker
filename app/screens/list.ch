@@ -53,9 +53,10 @@ Text1.id: 3
 Text2.id: 4
 
 3.x: 280
+3.y: 25
 
 4.x: 260
-4.y: 120
+4.y: 150
 
 Input.nb: 1
 Input1.id: 0
